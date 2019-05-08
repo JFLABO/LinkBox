@@ -10,6 +10,7 @@ http://jflabo.org/tbrploc/public/
   python
   Qt5
   Chrome
+  Core7i
   
 設計
 　ClientWS　App
