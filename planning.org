@@ -11,7 +11,8 @@ http://jflabo.org/tbrploc/public/
   Qt5
   Chrome
   Core7i
-  
+　文字コード
+ 
 設計
 　ClientWS　App
 　WebViewer
@@ -26,6 +27,10 @@ http://jflabo.org/tbrploc/public/
  　　ロジック
   GUI
   
+ファイルレイアウト
+
+データ形式
+
 機能
 　ファイルを読む
 　一覧を配列に格納
