@@ -4,7 +4,8 @@
 
 開発環境の整備(Python3.7)
 　python -m pip install -U PySide
-  pip install PySide2
+  python -m pip install PySide2
+  python -m pip install PyQt5
   
 Windowを作る
 ダッシュボードを作り込む
