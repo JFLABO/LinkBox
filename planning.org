@@ -8,6 +8,7 @@ LinkBox　(c)JFLABO
 　windows10
   python
   Qt5
+  Chrome
   
 設計
 
