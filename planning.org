@@ -1,6 +1,8 @@
 LinkBox　(c)2019 JFLABO
 http://jflabo.org/tbrploc/public/
-
+#目指すところ　Vision
+　快適で過ごしやすい明るい未来
+ 
 #企画
 　リンクをjsonデータに変換するアプリケーション
 　共有したい情報をまとめて管理する
