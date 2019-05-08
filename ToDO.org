@@ -7,6 +7,8 @@
   python -m pip install PySide2
   python -m pip install PyQt5
   
+  uic -o test.ui　> test.py
+  
 Windowを作る
 ダッシュボードを作り込む
 イメージをふくらませる
