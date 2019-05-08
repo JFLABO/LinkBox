@@ -1,4 +1,5 @@
 LinkBox　(c)JFLABO
+http://jflabo.org/tbrploc/public/
 
 企画
 　リンクをjsonデータに変換するアプリケーション
