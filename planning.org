@@ -22,7 +22,10 @@ http://jflabo.org/tbrploc/public/
 　xml 追加情報
 　　ソート　サーチ
   DBレス
-
+　モジュール
+ 　　ロジック
+  GUI
+  
 機能
 　ファイルを読む
 　一覧を配列に格納
