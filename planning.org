@@ -5,7 +5,10 @@ LinkBox　(c)JFLABO
 　共有したい情報をまとめて管理する
 
 仕様
-
+　windows10
+  python
+  Qt5
+  
 設計
 
 部品
