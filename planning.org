@@ -1,4 +1,4 @@
-LinkBox
+LinkBox　(c)JFLABO
 
 企画
 　リンクをjsonデータに変換するアプリケーション
