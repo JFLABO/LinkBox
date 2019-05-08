@@ -1,4 +1,4 @@
-LinkBox　(c)JFLABO
+LinkBox　(c)2019 JFLABO
 http://jflabo.org/tbrploc/public/
 
 企画
@@ -12,7 +12,10 @@ http://jflabo.org/tbrploc/public/
   Chrome
   
 設計
-
+　ClientWS　App
+　WebViewer
+　Unity
+ 
 部品
 　json list
 　xml 追加情報
