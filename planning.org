@@ -87,3 +87,6 @@ http://jflabo.org/tbrploc/public/
 #特訓したい事柄
 
 #チームコラボ　接続機能
+
+#チームに見せたい情報
+　http://jflabo.org/UltraVision/vlabo2/examples/vlabotw02.php
