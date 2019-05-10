@@ -6,3 +6,17 @@ for name in glob.iglob('../**/*.url', recursive=True):
 #ファイルを開いて中身を抽出してメモリに格納
 
 #HELLO WORLD
+
+#sort
+
+#serch
+
+#show
+
+#get
+
+#list page num
+
+#count stack
+
+#xml操作
