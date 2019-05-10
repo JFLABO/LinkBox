@@ -17,4 +17,5 @@ d=platform.processor()
 app = wx.App()
 
 # メッセージボックスを表示
-wx.MessageBox(u'SYSTEMTEST::'+d+ str(a) + str(b) + str(c), u'タイトル')
+wx.MessageBox(u'SYSTEMTEST::'+d+ str(a) + str(b) + str(c), u'この画面が出た場合はOKです。')
+# 出ない場合は環境にプログラムが足りない可能性があります。
