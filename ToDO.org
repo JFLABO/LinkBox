@@ -13,6 +13,7 @@
 　c:\program files (x86)\microsoft visual studio\shared\python37_64\lib\site-packages (19.1.1)
 　wxを使えるようにする　管理権限cmdで以下を実行
   python -m pip install -U wxPython
+  python -m pip install psutil
   
 Windowを作る
 ダッシュボードを作り込む
