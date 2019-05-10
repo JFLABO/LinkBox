@@ -11,7 +11,7 @@
   uic -o test.ui　> test.py
 
 　c:\program files (x86)\microsoft visual studio\shared\python37_64\lib\site-packages (19.1.1)
-　管理権限cmdで
+　wxを使えるようにする　管理権限cmdで以下を実行
   python -m pip install -U wxPython
   
 Windowを作る
