@@ -94,3 +94,5 @@ http://jflabo.org/tbrploc/public/
 
 #チームに見せたい情報
 　http://jflabo.org/UltraVision/vlabo2/examples/vlabotw02.php
+ 
+#マルチユーザ　リーダー機能
