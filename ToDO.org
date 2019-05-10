@@ -3,11 +3,16 @@
 　活かし方の整備
 
 開発環境の整備(Python3.7)
+
 　python -m pip install -U PySide
   python -m pip install PySide2
   python -m pip install PyQt5
   
   uic -o test.ui　> test.py
+
+　c:\program files (x86)\microsoft visual studio\shared\python37_64\lib\site-packages (19.1.1)
+　管理権限cmdで
+  python -m pip install -U wxPython
   
 Windowを作る
 ダッシュボードを作り込む
