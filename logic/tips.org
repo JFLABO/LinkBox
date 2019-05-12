@@ -1,2 +1,5 @@
-Tips001
-　.pyを.pywにするとコンソールウインドウが出なくなる
+Tips001　コンソールウインドウを出なくする
+　.pyを.pywにする
+
+Tips002　exeファイルを生成する
+　pyinstaller hello.py --onefile
