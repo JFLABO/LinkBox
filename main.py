@@ -5,8 +5,7 @@ import glob
 
 class GridFrame(wx.Frame):
     def __init__(self, parent):
-        wx.Frame.__init__(self, parent)
-
+        f=wx.Frame.__init__(self, parent)
         # Create a wxGrid object
         grid = wx.grid.Grid(self, -1)
 
@@ -16,8 +15,8 @@ class GridFrame(wx.Frame):
 
         # We can set the sizes of individual rows and columns
         # in pixels
-        grid.SetRowSize(0, 60)
-        grid.SetColSize(0, 120)
+        grid.SetRowSize(0, 20)
+        grid.SetColSize(0, 640)
 
         # And set grid cell contents as strings
         #grid.SetCellValue(0, 0, 'wxGrid is good')
@@ -26,12 +25,14 @@ class GridFrame(wx.Frame):
         #print(name)
             grid.SetCellValue(i, 0, name)
             i=i+1
-      self.Show()
+        self.Show()
 
 if __name__ == '__main__':
 
     app = wx.App(0)
     frame = GridFrame(None)
+    #frame.set_window_size(100,470)
+    frame.SetDimensions(0,0,840,480)
     app.MainLoop()
 
 #magic
