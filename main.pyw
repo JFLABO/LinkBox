@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+#LinkBoxフォルダに有るインターネットショートカット(.url)を自動で一覧にする
+
 import wx
 import wx.grid
 import glob
