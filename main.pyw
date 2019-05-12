@@ -51,7 +51,8 @@ class GridFrame(wx.Frame):
         print(vars(self))
         print(vars(event))
         print(obj)
-        url=obj.GetCellValue(event.GetRow(),event.GetCol())
+        #url=obj.GetCellValue(event.GetRow(),event.GetCol())
+        url=obj.GetCellValue(event.GetRow(),1)
         
         #url=self.grid.GetCellValue(self,1,1)
         #url=wx._grid.GridCellAttr
