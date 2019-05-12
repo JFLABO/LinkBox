@@ -1,46 +1,48 @@
+# -*- coding: utf-8 -*-
 import wx
 import wx.grid
+import glob
+import webbrowser
 
 class GridFrame(wx.Frame):
     def __init__(self, parent):
-        wx.Frame.__init__(self, parent)
-
+        f=wx.Frame.__init__(self, parent)
+        #f.setSize(100,650)
         # Create a wxGrid object
         grid = wx.grid.Grid(self, -1)
 
         # Then we call CreateGrid to set the dimensions of the grid
         # (100 rows and 10 columns in this example)
-        grid.CreateGrid(100, 10)
+        grid.CreateGrid(50, 1)
 
         # We can set the sizes of individual rows and columns
         # in pixels
-        grid.SetRowSize(0, 60)
-        grid.SetColSize(0, 120)
+        grid.SetRowSize(0, 20)
+        grid.SetColSize(0, 640)
 
         # And set grid cell contents as strings
-        grid.SetCellValue(0, 0, 'wxGrid is good')
-
-        # We can specify that some cells are read.only
-        grid.SetCellValue(0, 3, 'This is read.only')
-        grid.SetReadOnly(0, 3)
-
-        # Colours can be specified for grid cell contents
-        grid.SetCellValue(3, 3, 'green on grey')
-        grid.SetCellTextColour(3, 3, wx.GREEN)
-        grid.SetCellBackgroundColour(3, 3, wx.LIGHT_GREY)
-
-        # We can specify the some cells will store numeric
-        # values rather than strings. Here we set grid column 5
-        # to hold floating point values displayed with width of 6
-        # and precision of 2
-        grid.SetColFormatFloat(5, 6, 2)
-        grid.SetCellValue(0, 6, '3.1415')
-
+        #grid.SetCellValue(0, 0, 'wxGrid is good')
+        i=0
+        for name in glob.iglob('../**/*.url', recursive=True):
+        #print(name)
+            grid.SetCellValue(i, 0, name)
+            i=i+1
+            
+        grid.Bind(wx.grid.EVT_GRID_CELL_LEFT_DCLICK, self.click)
         self.Show()
 
-
+    def click(self, event):
+        url = "amazon.co.jp"
+        webbrowser.open(url)
+        #print('Double click')
+        
 if __name__ == '__main__':
 
     app = wx.App(0)
     frame = GridFrame(None)
+    #frame.set_window_size(100,470)
+    #frame.SetDimensions(0,0,840,480)
+    frame.SetSize(0,0,840,480)
     app.MainLoop()
+
+#magic
