@@ -27,6 +27,8 @@ class GridFrame(wx.Frame):
         #grid.SetCellValue(0, 0, 'wxGrid is good')
         i=0
         for name in glob.iglob('../**/*.url', recursive=True):
+            if i == 49:
+                continue
         #print(name)
             grid.SetCellValue(i, 0, name)
             with open(name) as f:
