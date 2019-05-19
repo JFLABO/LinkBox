@@ -1,0 +1,16 @@
+Copyright (C) [2019. R1] [JFLABO]
+
+This program is free software; 
+you can redistribute it and/or 
+modify it under the terms of the 
+GNU General Public License as 
+published by the Free Software 
+Foundation; either version 2 of 
+the License, or (at your option) 
+any later version. 
+
+日本語訳: このプログラムは自由ソフトウェアです。
+フリーソフトウェアファウンデーションにより発行された
+GNU一般公衆ライセンス(バージョン2のライセンスあるいは、
+(あなたの選択として)それ以降のバージョンのどれでも)の
+条項のもとで、あなたは、再配布、およびまたは、改変することができます。
