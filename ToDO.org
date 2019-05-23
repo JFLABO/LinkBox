@@ -8,6 +8,7 @@
   python -m pip install PySide2
   python -m pip install PyQt5
   python -m pip install pyinstaller
+  cd 'C:\Program Files (x86)\Microsoft Visual Studio\Shared\Python37_64\Lib\site-packages\PySide2\'  
   uic -o test.ui　> test.py
 
 　c:\program files (x86)\microsoft visual studio\shared\python37_64\lib\site-packages (19.1.1)
