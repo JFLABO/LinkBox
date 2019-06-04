@@ -8,6 +8,7 @@ import wx.grid as gridlib
 import glob
 import webbrowser
 import json
+import socket
 
 class GridFrame(wx.Frame):
     def __init__(self, parent):
@@ -56,6 +57,8 @@ class GridFrame(wx.Frame):
             i=i+1
             
         #JSON データの書き込み
+        host = socket.gethostname()
+        json_dict["agent"]=host
         f2 = open('linkbox_dict.json', 'w', encoding='utf8')
         json.dump(json_dict, f2, ensure_ascii=False)
         
