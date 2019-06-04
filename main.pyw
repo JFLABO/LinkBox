@@ -41,6 +41,7 @@ class GridFrame(wx.Frame):
                 continue
 
             grid.SetCellValue(i, 0, name)
+            #json_dict[name]=name
             with open(name) as f:
                 s = f.read()
             #print(s.replace(' ', '-'))
@@ -55,8 +56,8 @@ class GridFrame(wx.Frame):
             i=i+1
             
         #JSON データの書き込み
-        f2 = open('linkbox_dict.json', 'w')
-        json.dump(json_dict, f2)
+        f2 = open('linkbox_dict.json', 'w', encoding='utf8')
+        json.dump(json_dict, f2, ensure_ascii=False)
         
         grid.Bind(wx.grid.EVT_GRID_CELL_LEFT_DCLICK, self.click)
         
