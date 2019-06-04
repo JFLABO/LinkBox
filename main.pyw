@@ -4,16 +4,22 @@
 
 import wx
 import wx.grid
+import wx.grid as gridlib
 import glob
 import webbrowser
+import json
 
 class GridFrame(wx.Frame):
     def __init__(self, parent):
+        
         f=wx.Frame.__init__(self, parent)
+        #wx.Frame.__init__(self, parent, id, title,size=(250, 250))
+
+        
         #f.setSize(100,650)
         # Create a wxGrid object
+        self.SetTransparent(50)
         grid = wx.grid.Grid(self, -1)
-
         # Then we call CreateGrid to set the dimensions of the grid
         # (100 rows and 10 columns in this example)
         grid.CreateGrid(50, 3)
@@ -25,11 +31,15 @@ class GridFrame(wx.Frame):
 
         # And set grid cell contents as strings
         #grid.SetCellValue(0, 0, 'wxGrid is good')
+        attr = gridlib.GridCellAttr()
+        attr.SetReadOnly(True)
         i=0
+        json_dict={}
         for name in glob.iglob('../**/*.url', recursive=True):
+        #print(name)
             if i == 49:
                 continue
-        #print(name)
+
             grid.SetCellValue(i, 0, name)
             with open(name) as f:
                 s = f.read()
@@ -39,10 +49,18 @@ class GridFrame(wx.Frame):
             url=url.replace('URL=', '')
             url=url.strip()    
             grid.SetCellValue(i, 1, url)
+            grid.SetRowAttr(i, attr)
+            json_dict[name]=url
             #print(grid.GetCellValue(1,1))
             i=i+1
             
+        #JSON データの書き込み
+        f2 = open('linkbox_dict.json', 'w')
+        json.dump(json_dict, f2)
+        
         grid.Bind(wx.grid.EVT_GRID_CELL_LEFT_DCLICK, self.click)
+        
+        #self.SetTransparent(255)
         self.Show()
         
     def GetValue(self, row, col):
@@ -69,10 +87,14 @@ class GridFrame(wx.Frame):
 if __name__ == '__main__':
 
     app = wx.App(0)
+
     frame = GridFrame(None)
+    frame.SetTransparent(10)
     #frame.set_window_size(100,470)
     #frame.SetDimensions(0,0,840,480)
     frame.SetSize(0,0,840,480)
+    #self.SetTransparent(1)
+    frame.SetTransparent(250)
     app.MainLoop()
 
 #magic
