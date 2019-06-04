@@ -9,6 +9,7 @@ import glob
 import webbrowser
 import json
 import socket
+import datetime
 
 class GridFrame(wx.Frame):
     def __init__(self, parent):
@@ -16,7 +17,6 @@ class GridFrame(wx.Frame):
         f=wx.Frame.__init__(self, parent)
         #wx.Frame.__init__(self, parent, id, title,size=(250, 250))
 
-        
         #f.setSize(100,650)
         # Create a wxGrid object
         self.SetTransparent(50)
@@ -59,6 +59,9 @@ class GridFrame(wx.Frame):
         #JSON データの書き込み
         host = socket.gethostname()
         json_dict["agent"]=host
+        dt=datetime.datetime.today()
+
+        json_dict["rpt_at"]=dt.strftime("%Y/%m/%d %H:%M:%S")
         f2 = open('linkbox_dict.json', 'w', encoding='utf8')
         json.dump(json_dict, f2, ensure_ascii=False)
         
