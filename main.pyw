@@ -10,7 +10,8 @@ import webbrowser
 import json
 import socket
 import datetime
-
+import os
+    
 class GridFrame(wx.Frame):
     def __init__(self, parent):
         
@@ -36,6 +37,8 @@ class GridFrame(wx.Frame):
         attr.SetReadOnly(True)
         i=0
         json_dict={}
+        json_arr=[[],[],[]]
+        json_arr.clear()
         for name in glob.iglob('../**/*.url', recursive=True):
         #print(name)
             if i == 49:
@@ -45,25 +48,39 @@ class GridFrame(wx.Frame):
             #json_dict[name]=name
             with open(name) as f:
                 s = f.read()
+                
             #print(s.replace(' ', '-'))
             url=s.replace('[InternetShortcut]', '')
             url=url.replace('URL=', '')
             url=url.replace('URL=', '')
-            url=url.strip()    
+            url=url.strip()
+            
             grid.SetCellValue(i, 1, url)
             grid.SetRowAttr(i, attr)
-            json_dict[name]=url
+            #json_arr[i][1]=url
+            
+            #ts=os.stat(name).st_mtime
+            ts=datetime.datetime.fromtimestamp(os.stat(name).st_mtime)
+            dt2=ts.strftime('%Y/%m/%d  %H:%M:%S')
+
+            #json_obj["timestamp"]=ts
+            #json_arr[i][2]=ts
             #print(grid.GetCellValue(1,1))
+            
+            #URL JSON生成
+            json_arr.append([name,url,dt2])
+
             i=i+1
             
         #JSON データの書き込み
         host = socket.gethostname()
-        json_dict["agent"]=host
-        dt=datetime.datetime.today()
+        #json_dict["agent"]=host
+        #dt=datetime.datetime.today()
 
-        json_dict["rpt_at"]=dt.strftime("%Y/%m/%d %H:%M:%S")
+        #json_dict["rpt_at"]=dt.strftime("%Y/%m/%d %H:%M:%S")
         f2 = open('linkbox_dict.json', 'w', encoding='utf8')
-        json.dump(json_dict, f2, ensure_ascii=False)
+        #json_arr.remove(0)
+        json.dump(json_arr, f2, ensure_ascii=False)
         
         grid.Bind(wx.grid.EVT_GRID_CELL_LEFT_DCLICK, self.click)
         
