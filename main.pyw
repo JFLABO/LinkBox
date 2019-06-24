@@ -41,6 +41,14 @@ class GridFrame(wx.Frame):
         json_dict={}
         json_arr=[[],[],[]]
         json_arr.clear()
+        #JSON データの書き込み
+        host = socket.gethostname()
+        #json_dict["agent"]=host
+        dt=datetime.datetime.today()
+        dtts=dt.strftime("%Y/%m/%d %H:%M:%S")
+        json_arr.append([host,"meta infomation",dtts])
+        #json_dict["rpt_at"]=dt.strftime("%Y/%m/%d %H:%M:%S")
+        
         for name in glob.iglob('../**/*.url', recursive=True):
         #print(name)
             #if i == 49:
@@ -79,12 +87,6 @@ class GridFrame(wx.Frame):
 
         #gridにmodelをバインド
             
-        #JSON データの書き込み
-        host = socket.gethostname()
-        #json_dict["agent"]=host
-        #dt=datetime.datetime.today()
-
-        #json_dict["rpt_at"]=dt.strftime("%Y/%m/%d %H:%M:%S")
         f2 = open('linkbox_dict.json', 'w', encoding='utf8')
         #json_arr.remove(0)
         #sort reverse
@@ -102,7 +104,7 @@ class GridFrame(wx.Frame):
         #grid.Bind(wx.grid.EVT_GRID_CELL_LEFT_DCLICK, self.click)
         
         #self.SetTransparent(255)
-        sleep(1)
+        #sleep(1)
         f = open('linkbox_dict.json', 'r',encoding="utf8")
 
         json_data = json.load(f)
@@ -117,10 +119,12 @@ class GridFrame(wx.Frame):
             grid.SetCellValue(j, 0, jsn_key[0])
             grid.SetCellValue(j, 1, jsn_key[1])
             grid.SetCellValue(j, 2, jsn_key[2])
+            
             attr = gridlib.GridCellAttr()
             attr.SetReadOnly(True)
             grid.SetRowAttr(j, attr)
             j=j+1
+        grid.Bind(wx.grid.EVT_GRID_CELL_LEFT_DCLICK, self.click)
         f.close
         #for name in json_data:
         #print(json_data)   
