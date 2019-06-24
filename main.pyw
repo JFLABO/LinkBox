@@ -100,7 +100,7 @@ class GridFrame(wx.Frame):
         
         #self.SetTransparent(255)
 
-        f = open('linkbox_dict2.json', 'r',encoding="utf8")
+        f = open('linkbox_dict.json', 'r',encoding="utf8")
 
         json_data = json.load(f)
         j=0
