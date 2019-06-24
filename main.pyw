@@ -12,7 +12,8 @@ import socket
 import datetime
 import os
 from operator import itemgetter
-
+1
+from time import sleep
 class GridFrame(wx.Frame):
     def __init__(self, parent):
         
@@ -90,8 +91,10 @@ class GridFrame(wx.Frame):
         json_arr.sort(key=itemgetter(2),reverse=True)
         #json.dump(json_arr, f2, ensure_ascii=False)
         #encoding='utf8'
-        json.dump(json_arr, f2, ensure_ascii=False)
+        json.dump(json_arr, f2,indent=2, ensure_ascii=False)
         f2.close
+        with open('linkbox_dict.json', 'a') as f3:
+            print(']]', file=f3)
         #grid = wx.grid.Grid(self)
         # Set model.
         #grid.SetTable(MyTable())
@@ -99,7 +102,7 @@ class GridFrame(wx.Frame):
         #grid.Bind(wx.grid.EVT_GRID_CELL_LEFT_DCLICK, self.click)
         
         #self.SetTransparent(255)
-
+        sleep(1)
         f = open('linkbox_dict.json', 'r',encoding="utf8")
 
         json_data = json.load(f)
