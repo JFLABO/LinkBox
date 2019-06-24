@@ -1,100 +1,166 @@
 # -*- coding: utf-8 -*-
-#UI Demo (c)2019 JFLABO GNU
+#LinkBoxフォルダに有るインターネットショートカット(.url)を自動で一覧にする
+#.urlはChromeでデスクトップにドラッグアンドドロップしてできるファイル
 
-# Form implementation generated from reading ui file 'LinkBox.ui',
-# licensing of 'LinkBox.ui' applies.
-#
-# Created: Fri May 24 08:08:31 2019
-#      by: pyside2-uic  running on PySide2 5.12.3
-#
-# WARNING! All changes made in this file will be lost!
 import wx
-from PySide2 import QtCore, QtGui, QtWidgets
-import sys
-from PyQt5.QtWidgets import QApplication, QDialog
-
-#from ui_mainwindow import Ui_MainWindow
-
-class Ui_Dialog(object):
-    #def __init__(self):
-        #super(Ui_Dialog, self).__init__()
-        #self.ui = Ui_Dialog()
-        #self.ui.setupUi(self)
+import wx.grid
+import wx.grid as gridlib
+import glob
+import webbrowser
+import json
+import socket
+import datetime
+import os
+from operator import itemgetter
+1
+from time import sleep
+class GridFrame(wx.Frame):
+    def __init__(self, parent):
         
-    def setupUi(self, Dialog):
-        Dialog.setObjectName("Dialog")
-        Dialog.resize(794, 555)
-        self.buttonBox = QtWidgets.QDialogButtonBox(Dialog)
-        self.buttonBox.setGeometry(QtCore.QRect(610, 520, 171, 32))
-        self.buttonBox.setOrientation(QtCore.Qt.Horizontal)
-        self.buttonBox.setStandardButtons(QtWidgets.QDialogButtonBox.Cancel|QtWidgets.QDialogButtonBox.Ok)
-        self.buttonBox.setObjectName("buttonBox")
-        self.listView = QtWidgets.QListView(Dialog)
-        self.listView.setGeometry(QtCore.QRect(0, 40, 111, 471))
-        self.listView.setObjectName("listView")
-        self.textBrowser = QtWidgets.QTextBrowser(Dialog)
-        self.textBrowser.setGeometry(QtCore.QRect(450, 0, 256, 31))
-        self.textBrowser.setObjectName("textBrowser")
-        self.pushButton = QtWidgets.QPushButton(Dialog)
-        self.pushButton.setGeometry(QtCore.QRect(710, 0, 75, 31))
-        self.pushButton.setObjectName("pushButton")
-        self.tableView = QtWidgets.QTableView(Dialog)
-        self.tableView.setGeometry(QtCore.QRect(120, 40, 661, 471))
-        self.tableView.setObjectName("tableView")
-        self.groupBox = QtWidgets.QGroupBox(Dialog)
-        self.groupBox.setGeometry(QtCore.QRect(0, 0, 431, 41))
-        self.groupBox.setObjectName("groupBox")
-        self.radioButton = QtWidgets.QRadioButton(self.groupBox)
-        self.radioButton.setGeometry(QtCore.QRect(10, 20, 86, 16))
-        self.radioButton.setObjectName("radioButton")
-        self.radioButton_2 = QtWidgets.QRadioButton(self.groupBox)
-        self.radioButton_2.setGeometry(QtCore.QRect(90, 20, 86, 16))
-        self.radioButton_2.setObjectName("radioButton_2")
-        self.radioButton_3 = QtWidgets.QRadioButton(self.groupBox)
-        self.radioButton_3.setGeometry(QtCore.QRect(170, 20, 86, 16))
-        self.radioButton_3.setObjectName("radioButton_3")
+        f=wx.Frame.__init__(self, parent)
+        #wx.Frame.__init__(self, parent, id, title,size=(250, 250))
 
-        self.retranslateUi(Dialog)
-        #QtCore.QObject.connect(self.buttonBox, QtCore.SIGNAL("accepted()"), Dialog.accept)
-        #QtCore.QObject.connect(self.buttonBox, QtCore.SIGNAL("rejected()"), Dialog.reject)
-        QtCore.QMetaObject.connectSlotsByName(Dialog)
+        #f.setSize(100,650)
+        # Create a wxGrid object
+        self.SetTransparent(50)
+        grid = wx.grid.Grid(self, -1)
+        # Then we call CreateGrid to set the dimensions of the grid
+        # (100 rows and 10 columns in this example)
+        grid.CreateGrid(50, 3)
 
-    def retranslateUi(self, Dialog):
-        Dialog.setWindowTitle(QtWidgets.QApplication.translate("Dialog", "Dialog", None, -1))
-        self.pushButton.setText(QtWidgets.QApplication.translate("Dialog", "検索", None, -1))
-        self.groupBox.setTitle(QtWidgets.QApplication.translate("Dialog", "並べ替え", None, -1))
-        self.radioButton.setText(QtWidgets.QApplication.translate("Dialog", "登録日順", None, -1))
-        self.radioButton_2.setText(QtWidgets.QApplication.translate("Dialog", "優先度順", None, -1))
-        self.radioButton_3.setText(QtWidgets.QApplication.translate("Dialog", "重要度順", None, -1))
+        # We can set the sizes of individual rows and columns
+        # in pixels
+        #grid.SetRowSize(0, 20)
+        #grid.SetColSize(0, 640)
 
-if __name__ == '__main__':
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    Form = QtWidgets.QWidget()
-    ui = Ui_Dialog()
-    ui.setupUi(Form)
-    Form.show()
-    sys.exit(app.exec_())
-    #app = QtGui.QApplication(sys.argv)
-    #Dialog = QtGui.QDialog()
-    #ui = Ui_Dialog()
-    #ui.setupUi(Dialog)
-    #Dialog.show()
-    #sys.exit(app.exec_())
-    #app = wx.App(0)
-    #Ui_Dialog()
+        # And set grid cell contents as strings
+        #grid.SetCellValue(0, 0, 'wxGrid is good')
+        #attr = gridlib.GridCellAttr()
+        #attr.SetReadOnly(True)
+        i=0
+        json_dict={}
+        json_arr=[[],[],[]]
+        json_arr.clear()
+        for name in glob.iglob('../**/*.url', recursive=True):
+        #print(name)
+            #if i == 49:
+            #    continue
+
+            #grid.SetCellValue(i, 0, name)
+            
+            #json_dict[name]=name
+            with open(name) as f:
+                s = f.read()
+                
+            #print(s.replace(' ', '-'))
+            url=s.replace('[InternetShortcut]', '')
+            url=url.replace('URL=', '')
+            url=url.replace('URL=', '')
+            url=url.strip()
+            
+            #grid.SetCellValue(i, 1, url)
+            
+            #grid.SetRowAttr(i, attr)
+            #json_arr[i][1]=url
+            
+            #ts=os.stat(name).st_mtime
+            ts=datetime.datetime.fromtimestamp(os.stat(name).st_mtime)
+            dt2=ts.strftime('%Y/%m/%d  %H:%M:%S')
+
+            #json_obj["timestamp"]=ts
+            #json_arr[i][2]=ts
+            #print(grid.GetCellValue(1,1))
+            
+            #URL JSON生成
+            json_arr.append([name,url,dt2])
+
+            i=i+1
+        #変数を格納
+
+        #gridにmodelをバインド
+            
+        #JSON データの書き込み
+        host = socket.gethostname()
+        #json_dict["agent"]=host
+        #dt=datetime.datetime.today()
+
+        #json_dict["rpt_at"]=dt.strftime("%Y/%m/%d %H:%M:%S")
+        f2 = open('linkbox_dict.json', 'w', encoding='utf8')
+        #json_arr.remove(0)
+        #sort reverse
+        json_arr.sort(key=itemgetter(2),reverse=True)
+        #json.dump(json_arr, f2, ensure_ascii=False)
+        #encoding='utf8'
+        json.dump(json_arr, f2,indent=2, ensure_ascii=False)
+        f2.close
+        with open('linkbox_dict.json', 'a') as f3:
+            print(']]', file=f3)
+        #grid = wx.grid.Grid(self)
+        # Set model.
+        #grid.SetTable(MyTable())
+
+        #grid.Bind(wx.grid.EVT_GRID_CELL_LEFT_DCLICK, self.click)
+        
+        #self.SetTransparent(255)
+        #sleep(1)
+        f = open('linkbox_dict.json', 'r',encoding="utf8")
+
+        json_data = json.load(f)
+        j=0
+        grid.SetColSize(0, 640)
+        grid.SetColSize(1, 1)
+        grid.SetColSize(2, 110)
+        for jsn_key in json_data:
+            if j == 49:
+                continue
+            #print(jsn_key[0])
+            grid.SetCellValue(j, 0, jsn_key[0])
+            grid.SetCellValue(j, 1, jsn_key[1])
+            grid.SetCellValue(j, 2, jsn_key[2])
+            
+            attr = gridlib.GridCellAttr()
+            attr.SetReadOnly(True)
+            grid.SetRowAttr(j, attr)
+            j=j+1
+        grid.Bind(wx.grid.EVT_GRID_CELL_LEFT_DCLICK, self.click)
+        f.close
+        #for name in json_data:
+        #print(json_data)   
+        self.Show()
+        
+    def GetValue(self, row, col):
+        return self.data[row][col]
     
-    #app = QApplication(sys.argv)
-    #window = QDialog()
-    #form = Ui_Dialog()
-    #form.setupUi(window)
-    #window.show()
-    #form.show()
-    #self.ui = Ui_Dialog()
-    #self.ui.setupUi(self)
-    #self.ui = Ui_Dialog()
-    #self.ui.setupUi(self)
-    #frame  = Ui_Dialog()
-    #frame.setupUi(self)
-    #app.MainLoop()
+    def click(self, event):
+        obj = event.GetEventObject()
+        print(vars(self))
+        print(vars(event))
+        print(obj)
+        #url=obj.GetCellValue(event.GetRow(),event.GetCol())
+        url=obj.GetCellValue(event.GetRow(),1)
+        
+        #url=self.grid.GetCellValue(self,1,1)
+        #url=wx._grid.GridCellAttr
+        print(url)
+        #print(self.grid.GetCellValue(1,1))
+        #url=self.g
+        #url=self.grid.GetCellValue(1,1)
+        #url = "amazon.co.jp"
+        webbrowser.open(url)
+        #print('Double click')
+        
+if __name__ == '__main__':
 
+    app = wx.App(0)
+
+    frame = GridFrame(None)
+    frame.SetTransparent(10)
+    #frame.set_window_size(100,470)
+    #frame.SetDimensions(0,0,840,480)
+    frame.SetSize(0,0,990,480)
+    frame.Centre()
+    #self.SetTransparent(1)
+    frame.SetTransparent(250)
+    app.MainLoop()
+
+#magic
