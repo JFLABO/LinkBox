@@ -16,6 +16,9 @@
   python -m pip install -U wxPython
   python -m pip install psutil
   
+  python -m  pip install --upgrade setuptools
+  python -m pip install pycrypto
+  
 Windowを作る
 ダッシュボードを作り込む
 イメージをふくらませる
