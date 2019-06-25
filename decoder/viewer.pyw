@@ -1,10 +1,11 @@
+#受け取ったファイル名をlinkbox_dict.jsonに変更してデータファイルを差し替えてください
+
 #hey hello
 #D&Dでファイルを表示
 #ファイル名を指定して開く
 # -*- coding: utf-8 -*-
 #LinkBoxフォルダに有るインターネットショートカット(.url)を自動で一覧にする
 #.urlはChromeでデスクトップにドラッグアンドドロップしてできるファイル
-
 import wx
 import wx.grid
 import wx.grid as gridlib
