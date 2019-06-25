@@ -1,11 +1,11 @@
 #受け取ったファイル名をlinkbox_dict.jsonに変更してデータファイルを差し替えてください
-
 #hey hello
 #D&Dでファイルを表示
 #ファイル名を指定して開く
 # -*- coding: utf-8 -*-
 #LinkBoxフォルダに有るインターネットショートカット(.url)を自動で一覧にする
 #.urlはChromeでデスクトップにドラッグアンドドロップしてできるファイル
+
 import wx
 import wx.grid
 import wx.grid as gridlib
@@ -34,9 +34,14 @@ class GridFrame(wx.Frame):
         grid.SetColSize(0, 640)
         grid.SetColSize(1, 1)
         grid.SetColSize(2, 110)
+        dnum=len(json_data)
         for jsn_key in json_data:
-            if j == 149:
+            if j == dnum:
                 continue
+
+            if j == 150:
+                continue
+            
             grid.SetCellValue(j, 0, jsn_key[0])
             if len(jsn_key)<2:
                 #continue
