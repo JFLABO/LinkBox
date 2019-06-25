@@ -116,9 +116,21 @@ class GridFrame(wx.Frame):
             if j == 49:
                 continue
             #print(jsn_key[0])
+            #s=str(jsn_key)
+            #data=s.split(',')
             grid.SetCellValue(j, 0, jsn_key[0])
-            grid.SetCellValue(j, 1, jsn_key[1])
-            grid.SetCellValue(j, 2, jsn_key[2])
+            #print(jsn_key[1])
+            #while True:
+            #    try:
+            #        print(jsn_key[1])
+            #    except:
+            #        pass
+            if len(jsn_key)<2:
+                #continue
+                print(jsn_key)
+            else:
+                grid.SetCellValue(j, 1, jsn_key[1])
+                grid.SetCellValue(j, 2, jsn_key[2])
             
             attr = gridlib.GridCellAttr()
             attr.SetReadOnly(True)
