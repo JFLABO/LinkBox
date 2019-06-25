@@ -1,1 +1,3 @@
-hey hello
+#hey hello
+#D&Dでファイルを表示
+#ファイル名を指定して開く
