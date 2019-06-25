@@ -12,8 +12,10 @@ import socket
 import datetime
 import os
 from operator import itemgetter
-1
+import Crypto.Cipher.AES as AES
 from time import sleep
+import base64
+
 class GridFrame(wx.Frame):
     def __init__(self, parent):
         
@@ -97,6 +99,47 @@ class GridFrame(wx.Frame):
         f2.close
         with open('linkbox_dict.json', 'a') as f3:
             print(']]', file=f3)
+
+        #remore datapack
+        #f = open('remote_data_pack.linkbox', 'w',encoding="utf8")
+
+        #json_data = json.load(f)
+        #ネットワーク正当性検証
+        #key検証
+        with open('linkbox_dict.json',encoding="utf8") as f6:
+            coredata = f6.read()
+            
+        """main
+        """
+        #size=len(coredata)
+        ts1=datetime.datetime.today()
+        dt3=ts1.strftime('%Y_%m_%d_%H_%M_%S')
+            
+        path_w = 'remote_data_pack'+dt3+'.linkbox'
+
+        #key = b'0123456789abcdef'
+        #fsz = os.path.getsize(path_w)
+        #iv = b'0' * fsz
+
+        # AES-CBC モードで暗号化
+        #aes = AES.new(key, AES.MODE_CBC, iv)
+        # bytes 型を渡す
+        #cipher = aes.encrypt(coredata.encode('utf8'))
+        #fsz = os.path.getsize(path_w)
+        #with open(path_w, 'w') as fout:
+        #    fout.write(struct.pack('<Q', fsz))
+        #file = open('./linkbox_dict.json', 'rt',encoding="utf8").read()
+        #obj=[]
+        #obj.append(file)
+        #enc_file = base64.b64encode(obj)
+        with open(path_w, mode='w',encoding="utf8") as f5:
+            f5.write(str(coredata))
+        # 使い回せないでのデコード用を新しく用意する
+        #aes = AES.new(key, AES.MODE_CBC, iv)
+        # bytes 型が返る
+        #plain = aes.decrypt(cipher).decode('ascii')
+        #print(plain)
+    
         #grid = wx.grid.Grid(self)
         # Set model.
         #grid.SetTable(MyTable())
