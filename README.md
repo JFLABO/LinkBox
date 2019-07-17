@@ -24,3 +24,4 @@ main.pywをダブルクリックして起動します。
 　考えられています。これが明日行う計画ですので読んでおいてください。
 
 など
+https://github.com/JFLABO/LinkBox/tree/master/data
