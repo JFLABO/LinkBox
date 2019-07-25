@@ -1,2 +1,2 @@
 set dirname=%DATE:/=%
-mkdir C:\Users\toki\Desktop\OLDLOG\%dirname%
+mkdir C:\Users\[[your_UserID]]\Desktop\OLDLOG\%dirname%
