@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 import pandas as pd
 from pandas import Series, DataFrame
+import pprint
+import json
 
 # データ1の準備
 LOG = 'data01.json'
@@ -15,4 +17,4 @@ data_frame2 = DataFrame(attri_data2)
 #print(pd.merge(data_frame1, data_frame2, how="inner" ,on="ID"))
 df=pd.merge(data_frame1, data_frame2, how="left" ,on="ID")
 #print(df.to_html())
-print (df)
+pprint (df.to_json)
